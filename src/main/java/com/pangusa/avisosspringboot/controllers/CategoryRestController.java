@@ -16,46 +16,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pangusa.avisosspringboot.models.entity.Category;
 import com.pangusa.avisosspringboot.models.services.ICategoryService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class CategoryRestController {
-    
+
     @Autowired
     private ICategoryService categoryService;
 
     @GetMapping("/categories")
-    public List<Category> index(){
+    public List<Category> index() {
         return categoryService.findAll();
     }
 
     @GetMapping("/categories/{id}")
-    public Category show(@PathVariable Long id){
+    public Category show(@PathVariable Long id) {
         return categoryService.findById(id);
     }
 
     @PostMapping("/categories")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category create(@RequestBody Category category){
+    public Category create(@RequestBody Category category) {
         return categoryService.save(category);
     }
 
     @PutMapping("/categories/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category update(@RequestBody Category category, @PathVariable Long id){
+    public Category update(@RequestBody Category category, @PathVariable Long id) {
 
         Category categoryActual = categoryService.findById(id);
 
         categoryActual.setName(category.getName());
-        
+
         return categoryService.save(categoryActual);
     }
 
     @DeleteMapping("/categories/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         categoryService.delete(id);
     }
 }
-
-

@@ -9,23 +9,23 @@ import com.pangusa.avisosspringboot.models.entity.Post;
 
 @Service
 public class PostServiceImpl implements IPostService {
-    
+
     @Autowired
     private IPostDao postDao;
 
-    @Override 
+    @Override
     @Transactional(readOnly = true)
-    public List<Post> findAll(){
+    public List<Post> findAll() {
         return (List<Post>) postDao.findAll();
     }
 
-    @Override 
+    @Override
     @Transactional(readOnly = true)
     public Post findById(Long id) {
         return postDao.findById(id).orElse(null);
     }
 
-    @Override 
+    @Override
     @Transactional
     public Post save(Post post) {
         return postDao.save(post);

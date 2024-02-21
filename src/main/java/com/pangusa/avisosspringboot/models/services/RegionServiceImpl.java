@@ -13,19 +13,19 @@ public class RegionServiceImpl implements IRegionService {
     @Autowired
     private IRegionDao regionDao;
 
-    @Override 
+    @Override
     @Transactional(readOnly = true)
-    public List<Region> findAll(){
+    public List<Region> findAll() {
         return (List<Region>) regionDao.findAll();
     }
 
-    @Override 
+    @Override
     @Transactional(readOnly = true)
     public Region findById(Long id) {
         return regionDao.findById(id).orElse(null);
     }
 
-    @Override 
+    @Override
     @Transactional
     public Region save(Region region) {
         return regionDao.save(region);
@@ -36,5 +36,5 @@ public class RegionServiceImpl implements IRegionService {
     public void delete(Long id) {
         regionDao.deleteById(id);
     }
-    
+
 }

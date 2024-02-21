@@ -13,49 +13,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.pangusa.avisosspringboot.models.entity.Post;
-import com.pangusa.avisosspringboot.models.services.IPostService;
+import com.pangusa.avisosspringboot.models.entity.Country;
+import com.pangusa.avisosspringboot.models.services.ICountryService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
-public class PostRestController {
+public class CountryRestController {
 
     @Autowired
-    private IPostService postService;
+    private ICountryService countryService;
 
-    @GetMapping("/posts")
-    public List<Post> index() {
-        return postService.findAll();
+    @GetMapping("/countries")
+    public List<Country> index() {
+        return countryService.findAll();
     }
 
-    @GetMapping("/posts/{id}")
-    public Post show(@PathVariable Long id) {
-        return postService.findById(id);
+    @GetMapping("/countries/{id}")
+    public Country show(@PathVariable Long id) {
+        return countryService.findById(id);
     }
 
-    @PostMapping("/posts")
+    @PostMapping("/countries")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post create(@RequestBody Post post) {
-        return postService.save(post);
+    public Country create(@RequestBody Country country) {
+        return countryService.save(country);
     }
 
-    @PutMapping("/posts/{id}")
+    @PutMapping("/countries/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post update(@RequestBody Post post, @PathVariable Long id) {
+    public Country update(@RequestBody Country country, @PathVariable Long id) {
 
-        Post postActual = postService.findById(id);
+        Country countryActual = countryService.findById(id);
 
-        postActual.setTitle(post.getTitle());
-        postActual.setBriefDescription(post.getBriefDescription());
-        postActual.setDetailedDescription(post.getDetailedDescription());
+        countryActual.setName(country.getName());
 
-        return postService.save(postActual);
+        return countryService.save(countryActual);
     }
 
-    @DeleteMapping("/posts/{id}")
+    @DeleteMapping("/countries/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        postService.delete(id);
+        countryService.delete(id);
     }
 }

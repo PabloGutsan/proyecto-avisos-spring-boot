@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
@@ -25,24 +25,24 @@ public class UserRestController {
     private IUserService userService;
 
     @GetMapping("/users")
-    public List<User> index(){
+    public List<User> index() {
         return userService.findAll();
     }
 
-     @GetMapping("/users/{id}")
-    public User show(@PathVariable Long id){
+    @GetMapping("/users/{id}")
+    public User show(@PathVariable Long id) {
         return userService.findById(id);
     }
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody User user){
+    public User create(@RequestBody User user) {
         return userService.save(user);
     }
 
     @PutMapping("/users/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public User update(@RequestBody User user, @PathVariable Long id){
+    public User update(@RequestBody User user, @PathVariable Long id) {
 
         User userActual = userService.findById(id);
 
@@ -60,8 +60,7 @@ public class UserRestController {
 
     @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         userService.delete(id);
     }
 }
-    

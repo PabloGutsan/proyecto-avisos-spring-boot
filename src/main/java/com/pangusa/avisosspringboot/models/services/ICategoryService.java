@@ -4,7 +4,7 @@ import java.util.List;
 import com.pangusa.avisosspringboot.models.entity.Category;
 
 public interface ICategoryService {
-    
+
      public List<Category> findAll();
 
      public Category findById(Long id);

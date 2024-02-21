@@ -1,6 +1,5 @@
 package com.pangusa.avisosspringboot.models.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +21,8 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 @Entity
-@Table(name = "categories")
-public class Category implements Serializable {
+@Table(name = "countries")
+public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +30,16 @@ public class Category implements Serializable {
 
     private String name;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler" ,"categories"})
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler" ,"countries"})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", cascade = CascadeType.ALL)
+    private List<Region> regions;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler" ,"countries"})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", cascade = CascadeType.ALL)
     private List<Post> posts;
 
-    public Category() {
+    public Country() {
+        this.regions = new ArrayList<>();
         this.posts = new ArrayList<>();
     }
 

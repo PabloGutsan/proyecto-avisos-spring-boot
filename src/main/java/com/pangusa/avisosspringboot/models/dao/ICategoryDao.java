@@ -1,11 +1,8 @@
 package com.pangusa.avisosspringboot.models.dao;
 
-import org.springframework.data.repository.CrudRepository;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.pangusa.avisosspringboot.models.entity.Category;
 
-public interface ICategoryDao extends CrudRepository<Category, Long> {
-    
-    
-}
+public interface ICategoryDao extends JpaRepository<Category, Long> {
 
+}

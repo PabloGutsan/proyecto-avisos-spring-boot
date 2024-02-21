@@ -5,7 +5,7 @@ import java.util.List;
 import com.pangusa.avisosspringboot.models.entity.Region;
 
 public interface IRegionService {
-    
+
      public List<Region> findAll();
 
      public Region findById(Long id);

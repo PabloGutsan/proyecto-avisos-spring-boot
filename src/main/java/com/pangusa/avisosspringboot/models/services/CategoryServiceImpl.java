@@ -8,24 +8,24 @@ import com.pangusa.avisosspringboot.models.dao.ICategoryDao;
 import com.pangusa.avisosspringboot.models.entity.Category;
 
 @Service
-public class CategoryServiceImpl implements ICategoryService{
-    
+public class CategoryServiceImpl implements ICategoryService {
+
     @Autowired
     private ICategoryDao categoryDao;
 
     @Override
     @Transactional(readOnly = true)
-    public List<Category> findAll(){
-        return (List<Category>) categoryDao.findAll();    
+    public List<Category> findAll() {
+        return (List<Category>) categoryDao.findAll();
     }
 
-    @Override 
+    @Override
     @Transactional(readOnly = true)
     public Category findById(Long id) {
         return categoryDao.findById(id).orElse(null);
     }
 
-    @Override 
+    @Override
     @Transactional
     public Category save(Category category) {
         return categoryDao.save(category);

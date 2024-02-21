@@ -16,44 +16,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pangusa.avisosspringboot.models.entity.Region;
 import com.pangusa.avisosspringboot.models.services.IRegionService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class RegionRestController {
-    
+
     @Autowired
     private IRegionService regionService;
 
     @GetMapping("/regions")
-    public List<Region> index(){
+    public List<Region> index() {
         return regionService.findAll();
     }
 
-     @GetMapping("/regions/{id}")
-    public Region show(@PathVariable Long id){
+    @GetMapping("/regions/{id}")
+    public Region show(@PathVariable Long id) {
         return regionService.findById(id);
     }
 
     @PostMapping("/regions")
     @ResponseStatus(HttpStatus.CREATED)
-    public Region create(@RequestBody Region region){
+    public Region create(@RequestBody Region region) {
         return regionService.save(region);
     }
 
-     @PutMapping("/regions/{id}")
+    @PutMapping("/regions/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Region update(@RequestBody Region region, @PathVariable Long id){
+    public Region update(@RequestBody Region region, @PathVariable Long id) {
 
         Region regionActual = regionService.findById(id);
 
         regionActual.setName(region.getName());
-       
+
         return regionService.save(regionActual);
     }
 
     @DeleteMapping("/regions/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         regionService.delete(id);
     }
 

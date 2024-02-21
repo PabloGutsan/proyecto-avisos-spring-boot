@@ -8,24 +8,24 @@ import com.pangusa.avisosspringboot.models.dao.IUserDao;
 import com.pangusa.avisosspringboot.models.entity.User;
 
 @Service
-public class UserServiceImpl implements IUserService{
-    
+public class UserServiceImpl implements IUserService {
+
     @Autowired
     private IUserDao userDao;
 
-    @Override 
+    @Override
     @Transactional(readOnly = true)
-    public List<User> findAll(){
+    public List<User> findAll() {
         return (List<User>) userDao.findAll();
     }
 
-    @Override 
+    @Override
     @Transactional(readOnly = true)
     public User findById(Long id) {
         return userDao.findById(id).orElse(null);
     }
 
-    @Override 
+    @Override
     @Transactional
     public User save(User user) {
         return userDao.save(user);
